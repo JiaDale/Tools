@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="15.0" y="158.0">com.jdy.log.jdk.JdkLogger</node>
+    <node x="121.0" y="232.0">com.jdy.log.Log</node>
+    <node x="0.0" y="79.0">com.jdy.log.AbstractLogger</node>
+    <node x="175.0" y="0.0">com.jdy.log.LogFactory</node>
+    <node x="0.0" y="232.0">com.jdy.log.Level</node>
+    <node x="24.0" y="0.0">com.jdy.log.Logger</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.jdy.log.jdk.JdkLogger" target="com.jdy.log.AbstractLogger">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.jdy.log.AbstractLogger" target="com.jdy.log.Logger">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="32.0" y="14.5" />
+  <SelectedNodes>
+    <node>com.jdy.log.Logger</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
