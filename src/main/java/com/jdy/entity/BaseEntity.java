@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BaseEntity extends AbstractEntity implements BasicGetter<String>, Variable {
 
@@ -20,7 +21,7 @@ public class BaseEntity extends AbstractEntity implements BasicGetter<String>, V
     private final OrganData organData;
 
     public BaseEntity() {
-        this(new HashMap<>());
+        this(new ConcurrentHashMap<>());
     }
 
     public BaseEntity(Map<String, Object> map) {
@@ -163,7 +164,7 @@ public class BaseEntity extends AbstractEntity implements BasicGetter<String>, V
         private ChangeDate changeDate;
 
         OrganData(Map<String, Object> organMap) {
-            this.organMap = new HashMap<>(organMap);
+            this.organMap = new ConcurrentHashMap<>(organMap);
         }
 
         @Override

@@ -7,6 +7,7 @@ import com.jdy.util.TextUtils;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -28,7 +29,7 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
      * 无参构造函数，实例化数据存储对象
      */
     AbstractEntity() {
-        this(new HashMap<>());
+        this(new ConcurrentHashMap<>());
     }
 
     AbstractEntity(Map<String, Object> map) {
@@ -79,9 +80,7 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
         if (dataMap.size() != targetMap.size())
             return false;
 
-        if (dataMap.isEmpty()) {
-            return targetMap.isEmpty();
-        }
+        if (dataMap.isEmpty()) return targetMap.isEmpty();
 
         Collection<String> keyCollection = new HashSet<>();
         Iterator<Map.Entry<String, Object>> iterator = targetMap.entrySet().iterator();
@@ -183,12 +182,12 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
             tempKey = keyMap.get(upperKey);
             if (TextUtils.isBlack(tempKey)) {//如果没有取到，则证明数据存储对象中没有存储这条数据
                 keyMap.put(upperKey, key);
-                dataMap.put(tempKey=key, value);
+                dataMap.put(tempKey = key, value);
             } else {
                 dataMap.put(tempKey, value);
             }
         } else {
-            dataMap.put(tempKey=key, value);
+            dataMap.put(tempKey = key, value);
         }
         update(tempKey, value);
         return this;

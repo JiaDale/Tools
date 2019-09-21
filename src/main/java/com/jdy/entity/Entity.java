@@ -5,6 +5,7 @@ import java.util.Map;
 
 public interface Entity extends Serializable, Getter<String>, Setter<String> {
 
+
     /**
      * 提供一个将Map转换成Entity实例对象的接口
      *
@@ -14,6 +15,8 @@ public interface Entity extends Serializable, Getter<String>, Setter<String> {
      */
     @SuppressWarnings("unchecked")
     static <T extends Entity> T create(Map<String, Object> map) {
+        //Collection<String> collection = FileUtils.scanFiles(Entity.class.getPackage().getName());
+
         return (T) new BaseEntity(map);
     }
 
