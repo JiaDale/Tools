@@ -6,8 +6,10 @@ import com.jdy.log.Log;
 import com.jdy.util.ArrayUtil;
 import com.jdy.util.ClassUtil;
 import com.jdy.util.CollectionUtils;
+import com.jdy.util.TextUtils;
 
 import java.io.File;
+import java.net.URL;
 import java.util.*;
 import java.util.function.Function;
 
@@ -59,7 +61,7 @@ public class FileUtils {
      *
      * @return 返回扫描的文件夹下的所有文件
      */
-    public static Collection<String> scanFiles(final String packageNames, boolean isWeb, PredicateFunction<File, String> predicate) {
+    public static Collection<String> scanFiles(final String[] packageNames, boolean isWeb, PredicateFunction<File, String> predicate) {
         if (ArrayUtil.isEmpty(packageNames)) {
             Log.error("未指定扫描目录");
             return null;
@@ -73,6 +75,25 @@ public class FileUtils {
             else files.addAll(temp);
         }
         return files;
+    }
+
+    public static File getFile(String fileName) {
+        if (TextUtils.isEmpty(fileName)) return null;
+
+        URL url = ClassUtil.getClassLoader().getResource(fileName);
+        if (Objects.isNull(url)) {
+            Log.warn("无法确认文件[%s]的地址", fileName);
+            return null;
+        }
+
+        return new File(url.getFile());
+    }
+
+    public static File[] listFiles(String fileName) {
+        File file = getFile(fileName);
+        if (Objects.isNull(file)) return null;
+        return file.listFiles();
+
     }
 }
 
