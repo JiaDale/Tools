@@ -9,6 +9,8 @@ import java.util.Map;
  */
 public class Util {
 
+	public static final String PROJECT_CONFIG = "*_Project_Name_*";
+
 	private Util() {
 	}
 	
@@ -28,4 +30,5 @@ public class Util {
 
 	public static void takeNotes(Map<String, Object> dataMap, Map<String, Object> targetMap) {
 	}
+
 }

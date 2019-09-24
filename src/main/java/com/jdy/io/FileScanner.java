@@ -6,6 +6,7 @@ import com.jdy.util.ArrayUtil;
 import com.jdy.util.TextUtils;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,30 +17,40 @@ import java.util.Objects;
  * Created by Dale on 2019/9/21 14:01
  */
 public abstract class FileScanner<T> implements Scanner<File, T> {
+
     private final Collection<T>  mCollection = new ArrayList<>();
 
+
+    @SuppressWarnings("unchecked")
+    public static <T> Scanner<File,T> create(Class<T> type) {
+        if (type == String.class){
+            return (Scanner<File, T>) new FileNameScanner();
+        }
+
+        if (type ==  File.class){
+            return (Scanner<File, T>) new DefaultFileScanner();
+        }
+
+        throw new UnsupportedOperationException(String.format("暂时不支持扫描文件以%s类型输出", type.getClass().getName()));
+    }
+
     @Override
-    public Scanner<File, T> scanFiles(String packageName, PredicateFunction<File, T> function) {
+    public Scanner<File, T> scanFiles(String packageName, PredicateFunction<File, T> function) throws MalformedURLException {
         if (TextUtils.isBlack(packageName)) {
-            Log.error("请确认文件包名: %s", packageName);
+            Log.warn("请确认文件包名: %s", packageName);
         }
 
-        URL url = createURL("/" + packageName.replaceAll("\\.", "/"));
-
-        if (Objects.isNull(url)) {
-            Log.error("系统无法识别文件包名[%s]！", packageName);
-            return this;
-        }
+        URL url = FileUtils.searchFilePath(packageName).toUri().toURL();
 
         File[] files = new File(url.getFile()).listFiles();
         if (ArrayUtil.isEmpty(files)) {
-            Log.error("文件夹%s下没有文件", packageName);
+            Log.warn("-------------文件夹%s下没有文件-------------", url.getFile());
             return this;
         }
 
         for (File file : files) {
             if (file.isDirectory()) {
-                scanFiles(packageName + "." + file.getName(), function);
+                scanFiles(file.getAbsolutePath(), function);
             } else if (Objects.isNull(function)) {
                 mCollection.add(convert(packageName, file));
             } else if (function.test(file)) {
@@ -50,8 +61,6 @@ public abstract class FileScanner<T> implements Scanner<File, T> {
     }
 
     protected abstract T convert(String packageName, File file);
-
-    protected abstract URL createURL(String s);
 
     @Override
     public Collection<T> getFiles() {

@@ -2,8 +2,10 @@ package com.jdy.util;
 
 import com.jdy.functions.SQLFunction;
 import com.jdy.functions.StringFunction;
+import com.jdy.log.Log;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -14,6 +16,9 @@ public class TextUtils {
 
     public static final String EMPTY = "";
     public static final String NULL = "null";
+
+    public static final String SLASH = "/";
+    public static final String COLON = ":";
 
     /**
      * 数值校验
@@ -67,8 +72,8 @@ public class TextUtils {
      * @param defaultValue 失败时默认返回值
      * @return 如果{@code value}为空， 则返回{@code defaultValue}值]
      */
-    public static String checkValue(String value, String defaultValue) {
-        return CheckUtil.checkValue(value, isEmpty(value), defaultValue);
+    public static String checkValue(CharSequence value, CharSequence defaultValue) {
+        return Optional.of(CheckUtil.checkValue(value, isEmpty(value), defaultValue)).map(CharSequence::toString).orElse(null);
     }
 
     /**
@@ -273,7 +278,7 @@ public class TextUtils {
      * @param str 被检查的字符串
      * @return 被检查的字符串或者 null
      */
-    public static String nullIfEmpty(String str) {
+    public static String nullIfEmpty(CharSequence str) {
         return checkValue(str, null);
     }
 
@@ -454,11 +459,68 @@ public class TextUtils {
         return sql;
     }
 
-    public static String convert(Object value){
-        return convert(value,  StringFunction.getInstance());
+    public static String convert(Object value) {
+        return convert(value, StringFunction.getInstance());
     }
 
     public static String convert(Object value, Function<Object, String> function) {
         return Objects.requireNonNull(function).apply(value);
+    }
+
+    /**
+     * 忽略大小写去掉指定前缀
+     *
+     * @param str    字符串
+     * @param prefix 前缀
+     * @return 切掉后的字符串，若前缀不是 prefix， 返回原字符串
+     */
+    public static String removePrefixIgnoreCase(CharSequence str, CharSequence... prefix) {
+        if (isEmpty(str) || ArrayUtil.isEmpty(prefix)) {
+            return nullIfEmpty(str);
+        }
+
+        final String current = str.toString();
+        for (CharSequence charSequence : prefix) {
+            if (current.toLowerCase().startsWith(charSequence.toString().toLowerCase())) {
+                str = current.substring(charSequence.length());
+            }
+        }
+        return str.toString();
+    }
+
+    /**
+     * 忽略大小写去掉指定后缀
+     *
+     * @param str    字符串
+     * @param suffix 后缀
+     * @return 切掉后的字符串，若后缀不是 suffix， 返回原字符串
+     */
+    public static String removeSuffixIgnoreCase(CharSequence str, CharSequence... suffix) {
+        if (isEmpty(str) || ArrayUtil.isEmpty(suffix)) {
+            return nullIfEmpty(str);
+        }
+
+        final String current = str.toString();
+        for (CharSequence charSequence : suffix) {
+            if (!charSequence.toString().startsWith(".")) {
+                Log.warn("后缀 :%s 不是有效的文件后缀!", charSequence);
+            }
+
+            if (current.toLowerCase().endsWith(charSequence.toString().toLowerCase())) {
+                str = current.substring(0, str.length() - charSequence.length());
+            }
+        }
+        return str.toString();
+    }
+
+
+    public static String substring(String replaceStr, String target) {
+        if (isEmpty(replaceStr) || isEmpty(target)) return target;
+
+        int indexOf = replaceStr.indexOf(target);
+
+        if (indexOf < 0) return replaceStr;
+
+        return replaceStr.substring(indexOf);
     }
 }

@@ -3,93 +3,85 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="248.0" y="0.0">com.jdy.entity.Getter</node>
-    <node x="530.0" y="123.0">com.jdy.design.observe.Observable</node>
-    <node x="45.0" y="1113.0">com.jdy.entity.ChangeDate.ChangeRecord</node>
-    <node x="0.0" y="714.0">com.jdy.entity.ChangeDate</node>
-    <node x="513.0" y="714.0">com.jdy.entity.Response</node>
-    <node x="101.75" y="315.0">com.jdy.entity.Variable</node>
-    <node x="248.0" y="507.0">com.jdy.entity.BaseEntity</node>
-    <node x="370.75" y="246.0">com.jdy.entity.AbstractEntity</node>
-    <node x="448.0" y="1090.0">com.jdy.entity.BaseEntity.OrganData</node>
-    <node x="256.0" y="123.0">com.jdy.entity.Entity</node>
-    <node x="374.0" y="0.0">com.jdy.entity.Setter</node>
-    <node x="695.0" y="748.5">com.jdy.design.observe.Observer</node>
+    <node x="39.0" y="679.5">com.jdy.net.AbstractResponse</node>
+    <node x="94.5" y="0.0">com.jdy.entity.Getter</node>
+    <node x="376.5" y="123.0">com.jdy.design.observe.Observable</node>
+    <node x="631.5" y="714.0">com.jdy.entity.ChangeDate</node>
+    <node x="85.0" y="303.5">com.jdy.net.Response</node>
+    <node x="581.25" y="315.0">com.jdy.entity.Variable</node>
+    <node x="358.25" y="507.0">com.jdy.entity.BaseEntity</node>
+    <node x="0.0" y="1090.0">com.jdy.net.SucceedResponse</node>
+    <node x="276.25" y="246.0">com.jdy.entity.AbstractEntity</node>
+    <node x="176.0" y="1090.0">com.jdy.net.FailureResponse</node>
+    <node x="102.5" y="123.0">com.jdy.entity.Entity</node>
+    <node x="220.5" y="0.0">com.jdy.entity.Setter</node>
+    <node x="904.5" y="0.0">com.jdy.design.observe.Observer</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.jdy.entity.BaseEntity.OrganData" target="com.jdy.design.observe.Observer">
-      <point x="60.75" y="-48.0" />
-      <point x="630.25" y="1065.0" />
-      <point x="767.0" y="1065.0" />
-      <point x="0.0" y="25.0" />
-    </edge>
     <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.AbstractEntity">
-      <point x="60.5" y="-266.5" />
-      <point x="429.5" y="482.0" />
-      <point x="442.0" y="482.0" />
-      <point x="-71.25" y="105.5" />
+      <point x="-60.5" y="-266.5" />
+      <point x="0.0" y="105.5" />
     </edge>
-    <edge source="com.jdy.entity.Response" target="com.jdy.entity.AbstractEntity">
-      <point x="0.0" y="-59.5" />
-      <point x="594.0" y="482.0" />
-      <point x="584.5" y="482.0" />
-      <point x="71.25" y="105.5" />
+    <edge source="com.jdy.net.Response" target="com.jdy.entity.Entity">
+      <point x="0.0" y="-48.0" />
+      <point x="-63.5" y="36.5" />
     </edge>
-    <edge source="com.jdy.entity.BaseEntity.OrganData" target="com.jdy.entity.BaseEntity">
-      <point x="-60.75" y="-48.0" />
-      <point x="508.75" y="1065.0" />
-      <point x="369.0" y="1065.0" />
-      <point x="0.0" y="266.5" />
+    <edge source="com.jdy.net.FailureResponse" target="com.jdy.net.AbstractResponse">
+      <point x="0.0" y="-13.5" />
+      <point x="254.0" y="1065.0" />
+      <point x="229.5" y="1065.0" />
+      <point x="63.5" y="94.0" />
+    </edge>
+    <edge source="com.jdy.net.AbstractResponse" target="com.jdy.net.Response">
+      <point x="0.0" y="-94.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="com.jdy.net.SucceedResponse" target="com.jdy.net.AbstractResponse">
+      <point x="0.0" y="-13.5" />
+      <point x="78.0" y="1065.0" />
+      <point x="102.5" y="1065.0" />
+      <point x="-63.5" y="94.0" />
     </edge>
     <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Setter">
       <point x="63.5" y="-36.5" />
-      <point x="446.5" y="98.0" />
-      <point x="465.0" y="98.0" />
-      <point x="0.0" y="36.5" />
-    </edge>
-    <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Getter">
-      <point x="-63.5" y="-36.5" />
-      <point x="319.5" y="98.0" />
-      <point x="301.0" y="98.0" />
+      <point x="293.0" y="98.0" />
+      <point x="311.5" y="98.0" />
       <point x="0.0" y="36.5" />
     </edge>
     <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.Variable">
-      <point x="-60.5" y="-266.5" />
-      <point x="308.5" y="482.0" />
-      <point x="266.0" y="482.0" />
-      <point x="54.75" y="36.5" />
+      <point x="60.5" y="-266.5" />
+      <point x="539.75" y="482.0" />
+      <point x="636.0" y="482.0" />
+      <point x="-54.75" y="36.5" />
+    </edge>
+    <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Getter">
+      <point x="-63.5" y="-36.5" />
+      <point x="166.0" y="98.0" />
+      <point x="147.5" y="98.0" />
+      <point x="0.0" y="36.5" />
     </edge>
     <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.design.observe.Observable">
       <point x="71.25" y="-105.5" />
-      <point x="584.5" y="221.0" />
-      <point x="643.5" y="221.0" />
       <point x="0.0" y="36.5" />
     </edge>
     <edge source="com.jdy.entity.ChangeDate" target="com.jdy.entity.Variable">
       <point x="0.0" y="-59.5" />
-      <point x="114.0" y="482.0" />
-      <point x="156.5" y="482.0" />
-      <point x="-54.75" y="36.5" />
-    </edge>
-    <edge source="com.jdy.entity.ChangeDate.ChangeRecord" target="com.jdy.entity.ChangeDate">
-      <point x="0.0" y="-25.0" />
-      <point x="0.0" y="59.5" />
+      <point x="54.75" y="36.5" />
     </edge>
     <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.entity.Entity">
       <point x="-71.25" y="-105.5" />
-      <point x="442.0" y="221.0" />
-      <point x="383.0" y="221.0" />
-      <point x="0.0" y="36.5" />
+      <point x="347.5" y="221.0" />
+      <point x="293.0" y="221.0" />
+      <point x="63.5" y="36.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9077046548956661" x="1005.0000000000001" y="288.50000000000006" />
+  <settings layout="Hierarchic Group" zoom="0.9077046548956661" x="1005.0" y="541.8638373121132" />
   <SelectedNodes>
-    <node>com.jdy.entity.Variable</node>
+    <node>com.jdy.net.FailureResponse</node>
   </SelectedNodes>
   <Categories>
     <Category>Methods</Category>
-    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

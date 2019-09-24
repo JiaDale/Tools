@@ -3,6 +3,7 @@ package com.jdy.io;
 
 import com.jdy.functions.PredicateFunction;
 
+import java.net.MalformedURLException;
 import java.util.Collection;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Collection;
  */
 public interface Scanner<T, R> {
 
-    Scanner<T, R> scanFiles(final String packageName, PredicateFunction<T, R> function);
+    Scanner<T, R> scanFiles(final String packageName, PredicateFunction<T, R> function) throws MalformedURLException;
 
     Collection<R> getFiles();
 }

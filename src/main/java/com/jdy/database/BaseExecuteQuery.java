@@ -19,7 +19,7 @@ import java.util.Objects;
  * Description: Service
  * Created by Administrator on 2019/7/18 23:20
  */
-public class BaseExecuteQuery implements Query, EntityExecute, DataAccessObject {
+public class BaseExecuteQuery implements Service {
 
     private SimpleQueryDAO dao = new SimpleQueryDAO();
 
@@ -107,6 +107,11 @@ public class BaseExecuteQuery implements Query, EntityExecute, DataAccessObject 
     @Override
     public boolean execute(String sql, Object... parameters) {
         return dao.execute(sql, parameters);
+    }
+
+    @Override
+    public Query getQuery() {
+        return this;
     }
 
     @Override

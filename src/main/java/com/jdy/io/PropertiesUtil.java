@@ -1,6 +1,7 @@
 package com.jdy.io;
 
 import com.jdy.functions.BooleanFunction;
+import com.jdy.functions.StringFunction;
 
 import java.util.Objects;
 import java.util.Properties;
@@ -24,5 +25,13 @@ public class PropertiesUtil {
             return defaultValue;
         }
         return value;
+    }
+
+    public static String getStr(String key) {
+        return systemCache.getProperty(key);
+    }
+
+    public static String getStr(String key, String defaultValue) {
+        return StringFunction.getInstance().apply(get(key, defaultValue));
     }
 }

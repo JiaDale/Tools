@@ -20,6 +20,7 @@ public interface Entity extends Serializable, Getter<String>, Setter<String> {
         return (T) new BaseEntity(map);
     }
 
+
     /**
      * 获取数据Map
      *

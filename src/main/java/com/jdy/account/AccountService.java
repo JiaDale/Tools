@@ -1,7 +1,8 @@
 package com.jdy.account;
 
 import com.jdy.entity.BaseEntity;
-import com.jdy.entity.Response;
+import com.jdy.net.Response;
+
 
 class AccountService {
 
@@ -18,7 +19,7 @@ class AccountService {
             }
         }*/
 
-        return new Response(false, "密码错误！");
+        return Response.create(false,  501, "密码错误！",  null);
     }
 
     public Response register(BaseEntity entity){
@@ -34,7 +35,7 @@ class AccountService {
 //            return new Response(true, "注册成功！");
 //        }
 
-        return new Response(true, "注册失败！");
+        return Response.create(false,  501, "密码错误！",  null);
     }
 
     public Response update(BaseEntity entity){
@@ -48,7 +49,7 @@ class AccountService {
 //            return new Response(true, "修改成功！");
 //        }
 
-        return new Response(true, "修改失败！");
+        return Response.create(false,  501, "密码错误！",  null);
     }
 
     public Response delete(BaseEntity entity){
@@ -62,6 +63,6 @@ class AccountService {
 //            return new Response(true, "修改成功！");
 //        }
 
-        return new Response(true, "修改失败！");
+        return Response.create(false,  501, "密码错误！",  null);
     }
 }

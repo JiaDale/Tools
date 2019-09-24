@@ -3,73 +3,216 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="223.50000000000006" y="307.5">com.jdy.database.Query</node>
-    <node x="191.03750000000002" y="0.0">com.jdy.database.DataAccessObject</node>
-    <node x="787.0" y="725.0">com.jdy.functions.ResultSetFunction</node>
-    <node x="517.5" y="159.5">com.jdy.database.QueryDAO</node>
-    <node x="0.0" y="725.0">com.jdy.util.JDBCUtil</node>
-    <node x="381.87500000000006" y="513.0">com.jdy.database.SimpleQueryDAO</node>
-    <node x="0.9125000000000227" y="444.0">com.jdy.database.BaseExecuteQuery</node>
-    <node x="510.5" y="319.0">com.jdy.database.BaseQueryDAO</node>
-    <node x="37.50000000000006" y="296.0">com.jdy.database.EntityExecute</node>
-    <node x="10.500000000000057" y="148.0">com.jdy.database.Execute</node>
-    <node x="500.0" y="725.0">com.jdy.entity.Entity</node>
+    <node x="511.34038095238094" y="11.5">com.jdy.database.Query</node>
+    <node x="1596.75" y="0.0">com.jdy.database.DataAccessObject</node>
+    <node x="77.28892857142887" y="23.0">com.jdy.functions.ResultSetFunction</node>
+    <node x="779.9660476190479" y="258.0">com.jdy.database.QueryDAO</node>
+    <node x="32.875" y="166.0">com.jdy.util.JDBCUtil</node>
+    <node x="1370.5175" y="663.5">com.jdy.database.Service</node>
+    <node x="497.4660476190479" y="629.0">com.jdy.database.SimpleQueryDAO</node>
+    <node x="501.9660476190479" y="785.0">com.jdy.database.BaseExecuteQuery</node>
+    <node x="1251.216047619048" y="1112.0">com.jdy.database.AbstractService</node>
+    <node x="1561.639761904762" y="652.0">com.jdy.database.ProxyDAOFactory.DataAccessObjectInvocationHandler</node>
+    <node x="523.9660476190479" y="496.0">com.jdy.database.BaseQueryDAO</node>
+    <node x="1277.466047619048" y="473.0">com.jdy.database.EntityExecute</node>
+    <node x="1635.7987142857144" y="888.5">com.jdy.database.ProxyDAOFactory</node>
+    <node x="1294.966047619048" y="246.5">com.jdy.database.Execute</node>
+    <node x="1020.9660476190479" y="258.0">com.jdy.entity.Entity</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="com.jdy.database.SimpleQueryDAO" target="com.jdy.util.JDBCUtil">
+      <point x="-115.20000000000005" y="-48.0" />
+      <point x="526.2660476190479" y="609.0" />
+      <point x="229.28892857142887" y="609.0" />
+      <point x="229.28892857142887" y="448.0" />
+      <point x="263.375" y="448.0" />
+      <point x="0.0" y="128.5" />
+    </edge>
+    <edge source="com.jdy.database.QueryDAO" target="com.jdy.database.Query">
+      <point x="-55.25" y="-36.5" />
+      <point x="835.2160476190479" y="136.0" />
+      <point x="720.5903809523809" y="136.0" />
+      <point x="69.75" y="36.5" />
+    </edge>
     <edge source="com.jdy.database.SimpleQueryDAO" target="com.jdy.database.BaseQueryDAO">
-      <point x="70.5" y="-49.0" />
-      <point x="593.375" y="419.0" />
-      <point x="622.0" y="419.0" />
-      <point x="0.0" y="26.0" />
-    </edge>
-    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.database.Query">
-      <point x="89.0" y="-118.0" />
-      <point x="223.41250000000002" y="419.0" />
-      <point x="290.25000000000006" y="419.0" />
-      <point x="-66.75" y="37.5" />
-    </edge>
-    <edge source="com.jdy.database.EntityExecute" target="com.jdy.database.Execute">
-      <point x="0.0" y="-49.0" />
-      <point x="0.0" y="49.0" />
-    </edge>
-    <edge source="com.jdy.database.SimpleQueryDAO" target="com.jdy.database.Query">
-      <point x="-70.5" y="-49.0" />
-      <point x="452.37500000000006" y="419.0" />
-      <point x="423.75000000000006" y="419.0" />
-      <point x="66.75" y="37.5" />
+      <point x="0.0" y="-48.0" />
+      <point x="0.0" y="25.0" />
     </edge>
     <edge source="com.jdy.database.QueryDAO" target="com.jdy.database.DataAccessObject">
-      <point x="0.0" y="-37.5" />
-      <point x="622.0" y="123.0" />
-      <point x="367.2875" y="123.0" />
-      <point x="58.75" y="49.0" />
+      <point x="55.25" y="-36.5" />
+      <point x="945.7160476190479" y="136.0" />
+      <point x="1626.125" y="136.0" />
+      <point x="-88.125" y="48.0" />
+    </edge>
+    <edge source="com.jdy.database.ProxyDAOFactory" target="com.jdy.database.ProxyDAOFactory.DataAccessObjectInvocationHandler">
+      <point x="-83.33333333333331" y="-25.0" />
+      <point x="1677.465380952381" y="765.0" />
+      <point x="1633.389761904762" y="765.0" />
+      <point x="-71.75" y="25.0" />
+    </edge>
+    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.util.JDBCUtil">
+      <point x="-69.75" y="-128.5" />
+      <point x="571.7160476190479" y="755.0" />
+      <point x="184.97309523809554" y="755.0" />
+      <point x="184.97309523809554" y="448.0" />
+      <point x="109.70833333333337" y="448.0" />
+      <point x="-153.66666666666663" y="128.5" />
+    </edge>
+    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.database.Service">
+      <point x="116.25" y="-128.5" />
+      <point x="757.7160476190479" y="765.0" />
+      <point x="1394.7675" y="765.0" />
+      <point x="-24.25" y="13.5" />
+    </edge>
+    <edge source="com.jdy.database.Service" target="com.jdy.database.EntityExecute">
+      <point x="0.0" y="-13.5" />
+      <point x="1419.0175" y="589.0" />
+      <point x="1366.466047619048" y="589.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="com.jdy.database.AbstractService" target="com.jdy.database.Query">
+      <point x="-119.57142857142856" y="-117.0" />
+      <point x="1271.1446190476195" y="1092.0" />
+      <point x="0.0" y="1092.0" />
+      <point x="0.0" y="126.0" />
+      <point x="534.5903809523809" y="126.0" />
+      <point x="-116.25" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.ProxyDAOFactory" target="com.jdy.database.DataAccessObject">
+      <point x="83.33333333333326" y="-25.0" />
+      <point x="1844.1320476190476" y="765.0" />
+      <point x="1877.591047619048" y="765.0" />
+      <point x="1877.591047619048" y="146.0" />
+      <point x="1743.625" y="146.0" />
+      <point x="29.375" y="48.0" />
+    </edge>
+    <edge source="com.jdy.database.Service" target="com.jdy.database.QueryDAO">
+      <point x="-32.33333333333326" y="-13.5" />
+      <point x="1386.684166666667" y="599.0" />
+      <point x="945.7160476190479" y="599.0" />
+      <point x="55.25" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.AbstractService" target="com.jdy.entity.Entity">
+      <point x="-39.85714285714289" y="-117.0" />
+      <point x="1350.858904761905" y="1072.0" />
+      <point x="1136.5389285714289" y="1072.0" />
+      <point x="1136.5389285714289" y="448.0" />
+      <point x="1179.716047619048" y="448.0" />
+      <point x="31.75" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.BaseQueryDAO" target="com.jdy.util.JDBCUtil">
+      <point x="-58.750000000000114" y="-25.0" />
+      <point x="582.7160476190478" y="448.0" />
+      <point x="417.04166666666663" y="448.0" />
+      <point x="153.66666666666663" y="128.5" />
+    </edge>
+    <edge source="com.jdy.database.AbstractService" target="com.jdy.database.Service">
+      <point x="0.0" y="-117.0" />
+      <point x="1390.716047619048" y="1062.0" />
+      <point x="1443.2675" y="1062.0" />
+      <point x="24.25" y="13.5" />
+    </edge>
+    <edge source="com.jdy.database.EntityExecute" target="com.jdy.database.Execute">
+      <point x="44.5" y="-48.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="com.jdy.database.AbstractService" target="com.jdy.database.BaseExecuteQuery">
+      <point x="-79.71428571428578" y="-117.0" />
+      <point x="1311.0017619047621" y="1082.0" />
+      <point x="641.4660476190479" y="1082.0" />
+      <point x="0.0" y="128.5" />
     </edge>
     <edge source="com.jdy.database.BaseQueryDAO" target="com.jdy.database.QueryDAO">
-      <point x="0.0" y="-26.0" />
-      <point x="0.0" y="37.5" />
+      <point x="58.749999999999886" y="-25.0" />
+      <point x="700.2160476190478" y="448.0" />
+      <point x="835.2160476190479" y="448.0" />
+      <point x="-55.25" y="36.5" />
     </edge>
-    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.database.EntityExecute">
-      <point x="0.0" y="-118.0" />
-      <point x="134.41250000000002" y="419.0" />
-      <point x="120.50000000000006" y="419.0" />
-      <point x="0.0" y="49.0" />
+    <edge source="com.jdy.util.JDBCUtil" target="com.jdy.functions.ResultSetFunction">
+      <point x="0.0" y="-128.5" />
+      <point x="263.375" y="116.0" />
+      <point x="229.28892857142887" y="116.0" />
+      <point x="0.0" y="25.0" />
     </edge>
-    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.database.DataAccessObject">
-      <point x="-89.0" y="-118.0" />
-      <point x="45.41250000000002" y="419.0" />
-      <point x="0.0" y="419.0" />
-      <point x="0.0" y="123.0" />
-      <point x="249.78750000000002" y="123.0" />
-      <point x="-58.75" y="49.0" />
+    <edge source="com.jdy.database.Service" target="com.jdy.database.Query">
+      <point x="32.33333333333326" y="-13.5" />
+      <point x="1451.3508333333334" y="609.0" />
+      <point x="1537.466047619048" y="609.0" />
+      <point x="1537.466047619048" y="126.0" />
+      <point x="767.0903809523809" y="126.0" />
+      <point x="116.25" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.database.SimpleQueryDAO">
+      <point x="-23.25" y="-128.5" />
+      <point x="618.2160476190479" y="745.0" />
+      <point x="569.4660476190479" y="745.0" />
+      <point x="-72.0" y="48.0" />
+    </edge>
+    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.database.Query">
+      <point x="-116.25" y="-128.5" />
+      <point x="525.2160476190479" y="765.0" />
+      <point x="22.375" y="765.0" />
+      <point x="22.375" y="136.0" />
+      <point x="581.0903809523809" y="136.0" />
+      <point x="-69.75" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.SimpleQueryDAO" target="com.jdy.database.Query">
+      <point x="-57.60000000000002" y="-48.0" />
+      <point x="583.8660476190479" y="599.0" />
+      <point x="513.4660476190479" y="599.0" />
+      <point x="513.4660476190479" y="146.0" />
+      <point x="627.5903809523809" y="146.0" />
+      <point x="-23.25" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.BaseExecuteQuery" target="com.jdy.entity.Entity">
+      <point x="69.75" y="-128.5" />
+      <point x="711.2160476190479" y="755.0" />
+      <point x="1116.216047619048" y="755.0" />
+      <point x="-31.75" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.ProxyDAOFactory.DataAccessObjectInvocationHandler" target="com.jdy.database.ProxyDAOFactory">
+      <point x="71.75" y="25.0" />
+      <point x="1776.889761904762" y="765.0" />
+      <point x="1760.7987142857144" y="765.0" />
+      <point x="0.0" y="-25.0" />
+    </edge>
+    <edge source="com.jdy.database.SimpleQueryDAO" target="com.jdy.entity.Entity">
+      <point x="115.20000000000005" y="-48.0" />
+      <point x="756.666047619048" y="609.0" />
+      <point x="1057.2675" y="609.0" />
+      <point x="1057.2675" y="448.0" />
+      <point x="1052.716047619048" y="448.0" />
+      <point x="-95.25" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.EntityExecute" target="com.jdy.entity.Entity">
+      <point x="-44.5" y="-48.0" />
+      <point x="1321.966047619048" y="448.0" />
+      <point x="1243.216047619048" y="448.0" />
+      <point x="95.25" y="36.5" />
+    </edge>
+    <edge source="com.jdy.database.AbstractService" target="com.jdy.database.ProxyDAOFactory">
+      <point x="79.71428571428578" y="-117.0" />
+      <point x="1470.4303333333337" y="1082.0" />
+      <point x="1760.7987142857144" y="1082.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="com.jdy.database.AbstractService" target="com.jdy.database.DataAccessObject">
+      <point x="39.85714285714289" y="-117.0" />
+      <point x="1430.5731904761908" y="1072.0" />
+      <point x="1551.139761904762" y="1072.0" />
+      <point x="1551.139761904762" y="146.0" />
+      <point x="1684.875" y="146.0" />
+      <point x="-29.375" y="48.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.8595617529880478" x="539.0" y="492.0" />
+  <settings layout="Hierarchic Group" zoom="0.7510980966325037" x="953.0" y="673.0" />
   <SelectedNodes>
-    <node>com.jdy.functions.ResultSetFunction</node>
+    <node>com.jdy.database.AbstractService</node>
   </SelectedNodes>
   <Categories>
     <Category>Methods</Category>
+    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
