@@ -90,6 +90,7 @@ public class DispatcherServlet extends HttpServlet {
                     HandlerMapping handlerMapping = new HandlerMapping(Pattern.compile(regex), bean, method);
 
                     handlerMappings.add(handlerMapping);
+
 //                    handlerAdaptorMap.put(handler, new HandlerAdaptor());
                     Log.info("Mapped:  %s  --->  %s", regex, method.getName());
 

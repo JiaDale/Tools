@@ -16,13 +16,17 @@ import java.util.Objects;
  */
 public class SimpleQueryDAO extends BaseQueryDAO implements Query {
 
-    @SuppressWarnings("unchecked")
+
     private <T> T convert(Map<String, Object> map, Class<T> tClass) {
         if (Objects.isNull(tClass)) {
             int size = map.size();
 
             if (size > 1) {
-                return Entity.create(map);
+                try {
+                    return (T) map;
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
             if (size < 1) {
@@ -32,11 +36,17 @@ public class SimpleQueryDAO extends BaseQueryDAO implements Query {
             return (T) map.values().iterator().next();
         }
 
-        if (tClass.isAssignableFrom(Entity.class)) {
-            return Entity.create(map);
+        /**
+         * 这里发现一个问题， 子类的class对象 调用 isAssignableFrom 父类的 class 对象 竟然可能为false
+         *
+         *  按理来说 子类找父类 应该比父类找子类好找。。。。
+         *
+         */
+        if (Entity.class.isAssignableFrom(tClass)) {
+            return ProxyEntityFactory.create(tClass, map);
         }
 
-        if (tClass.isAssignableFrom(Map.class)) {
+        if (Map.class.isAssignableFrom(tClass)) {
             return (T) map;
         }
 
@@ -48,6 +58,10 @@ public class SimpleQueryDAO extends BaseQueryDAO implements Query {
 
         throw new UnsupportedOperationException("暂时不支持数据：" + map + " 向 " + tClass.getName() + "数据类型转换！");
     }
+
+
+
+
 
     @Override
     public <T> List<T> select(String sql, final Class<T> claz, Object... parameters) {

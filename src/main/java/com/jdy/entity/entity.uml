@@ -3,85 +3,185 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="39.0" y="679.5">com.jdy.net.AbstractResponse</node>
-    <node x="94.5" y="0.0">com.jdy.entity.Getter</node>
-    <node x="376.5" y="123.0">com.jdy.design.observe.Observable</node>
-    <node x="631.5" y="714.0">com.jdy.entity.ChangeDate</node>
-    <node x="85.0" y="303.5">com.jdy.net.Response</node>
-    <node x="581.25" y="315.0">com.jdy.entity.Variable</node>
-    <node x="358.25" y="507.0">com.jdy.entity.BaseEntity</node>
-    <node x="0.0" y="1090.0">com.jdy.net.SucceedResponse</node>
-    <node x="276.25" y="246.0">com.jdy.entity.AbstractEntity</node>
-    <node x="176.0" y="1090.0">com.jdy.net.FailureResponse</node>
-    <node x="102.5" y="123.0">com.jdy.entity.Entity</node>
-    <node x="220.5" y="0.0">com.jdy.entity.Setter</node>
-    <node x="904.5" y="0.0">com.jdy.design.observe.Observer</node>
+    <node x="1226.1303366174056" y="931.5">com.jdy.net.AbstractResponse</node>
+    <node x="740.279146141215" y="11.5">com.jdy.entity.Getter</node>
+    <node x="1044.010673234811" y="358.5">com.jdy.net.Response</node>
+    <node x="320.0470032840723" y="23.0">com.jdy.entity.OnDataChangeListener</node>
+    <node x="0.0" y="462.5">com.jdy.entity.Variable</node>
+    <node x="544.25" y="724.0">com.jdy.entity.BaseEntity</node>
+    <node x="1259.6303366174056" y="146.0">com.jdy.net.SucceedResponse</node>
+    <node x="385.7606732348112" y="335.0">com.jdy.entity.AbstractEntity</node>
+    <node x="568.75" y="1494.0">com.jdy.entity.BaseEntity.ChangeData</node>
+    <node x="1217.75" y="1541.5">com.jdy.net.FailureResponse</node>
+    <node x="258.0" y="169.0">com.jdy.entity.Monitorable</node>
+    <node x="814.0106732348111" y="180.5">com.jdy.entity.Entity</node>
+    <node x="898.7553366174055" y="0.0">com.jdy.entity.Setter</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.AbstractEntity">
-      <point x="-60.5" y="-266.5" />
-      <point x="0.0" y="105.5" />
+    <edge source="com.jdy.net.AbstractResponse" target="com.jdy.entity.Entity">
+      <point x="-33.25" y="-152.5" />
+      <point x="1392.3803366174056" y="704.0" />
+      <point x="1439.5106732348113" y="704.0" />
+      <point x="1439.5106732348113" y="295.0" />
+      <point x="1005.5940065681443" y="295.0" />
+      <point x="87.08333333333326" y="25.0" />
     </edge>
-    <edge source="com.jdy.net.Response" target="com.jdy.entity.Entity">
-      <point x="0.0" y="-48.0" />
-      <point x="-63.5" y="36.5" />
+    <edge source="com.jdy.net.Response" target="com.jdy.net.FailureResponse">
+      <point x="-128.33333333333337" y="141.0" />
+      <point x="1108.1773399014778" y="704.0" />
+      <point x="1110.6666666666667" y="704.0" />
+      <point x="1110.6666666666667" y="1469.0" />
+      <point x="1261.0833333333333" y="1469.0" />
+      <point x="-86.66666666666669" y="-36.5" />
     </edge>
-    <edge source="com.jdy.net.FailureResponse" target="com.jdy.net.AbstractResponse">
-      <point x="0.0" y="-13.5" />
-      <point x="254.0" y="1065.0" />
-      <point x="229.5" y="1065.0" />
-      <point x="63.5" y="94.0" />
+    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.Getter">
+      <point x="43.14285714285711" y="-360.0" />
+      <point x="738.3928571428571" y="684.0" />
+      <point x="797.2606732348111" y="684.0" />
+      <point x="797.2606732348111" y="116.0" />
+      <point x="770.779146141215" y="116.0" />
+      <point x="-30.5" y="36.5" />
+    </edge>
+    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.Setter">
+      <point x="129.42857142857133" y="-360.0" />
+      <point x="824.6785714285713" y="704.0" />
+      <point x="1033.510673234811" y="704.0" />
+      <point x="1033.510673234811" y="126.0" />
+      <point x="1012.5053366174055" y="126.0" />
+      <point x="22.75" y="48.0" />
     </edge>
     <edge source="com.jdy.net.AbstractResponse" target="com.jdy.net.Response">
-      <point x="0.0" y="-94.0" />
-      <point x="0.0" y="48.0" />
+      <point x="-99.75" y="-152.5" />
+      <point x="1325.8803366174056" y="704.0" />
+      <point x="1364.8440065681446" y="704.0" />
+      <point x="128.33333333333337" y="141.0" />
     </edge>
     <edge source="com.jdy.net.SucceedResponse" target="com.jdy.net.AbstractResponse">
-      <point x="0.0" y="-13.5" />
-      <point x="78.0" y="1065.0" />
-      <point x="102.5" y="1065.0" />
-      <point x="-63.5" y="94.0" />
+      <point x="119.0" y="59.5" />
+      <point x="1557.1303366174056" y="315.0" />
+      <point x="1486.1011904761904" y="315.0" />
+      <point x="1486.1011904761904" y="704.0" />
+      <point x="1525.3803366174056" y="704.0" />
+      <point x="99.75" y="-152.5" />
     </edge>
-    <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Setter">
-      <point x="63.5" y="-36.5" />
-      <point x="293.0" y="98.0" />
-      <point x="311.5" y="98.0" />
-      <point x="0.0" y="36.5" />
+    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.Entity">
+      <point x="86.28571428571422" y="-360.0" />
+      <point x="781.5357142857142" y="694.0" />
+      <point x="901.0940065681446" y="694.0" />
+      <point x="-17.41666666666663" y="25.0" />
+    </edge>
+    <edge source="com.jdy.net.Response" target="com.jdy.net.SucceedResponse">
+      <point x="128.33333333333337" y="-141.0" />
+      <point x="1364.8440065681446" y="315.0" />
+      <point x="1319.1303366174056" y="315.0" />
+      <point x="-119.0" y="59.5" />
     </edge>
     <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.Variable">
-      <point x="60.5" y="-266.5" />
-      <point x="539.75" y="482.0" />
-      <point x="636.0" y="482.0" />
-      <point x="-54.75" y="36.5" />
+      <point x="-129.42857142857133" y="-360.0" />
+      <point x="565.8214285714287" y="704.0" />
+      <point x="113.0" y="704.0" />
+      <point x="0.0" y="37.0" />
     </edge>
-    <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Getter">
-      <point x="-63.5" y="-36.5" />
-      <point x="166.0" y="98.0" />
-      <point x="147.5" y="98.0" />
-      <point x="0.0" y="36.5" />
+    <edge source="com.jdy.entity.BaseEntity.ChangeData" target="com.jdy.entity.BaseEntity">
+      <point x="-84.33333333333326" y="-84.0" />
+      <point x="610.9166666666667" y="1469.0" />
+      <point x="594.5833333333333" y="1469.0" />
+      <point x="-100.66666666666674" y="360.0" />
     </edge>
-    <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.design.observe.Observable">
-      <point x="71.25" y="-105.5" />
-      <point x="0.0" y="36.5" />
+    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.OnDataChangeListener">
+      <point x="-86.28571428571422" y="-360.0" />
+      <point x="608.9642857142858" y="694.0" />
+      <point x="236.5" y="694.0" />
+      <point x="236.5" y="116.0" />
+      <point x="344.0470032840723" y="116.0" />
+      <point x="-72.0" y="25.0" />
     </edge>
-    <edge source="com.jdy.entity.ChangeDate" target="com.jdy.entity.Variable">
-      <point x="0.0" y="-59.5" />
-      <point x="54.75" y="36.5" />
+    <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.entity.Setter">
+      <point x="33.41666666666674" y="-164.5" />
+      <point x="619.6773399014779" y="315.0" />
+      <point x="600.5" y="315.0" />
+      <point x="600.5" y="126.0" />
+      <point x="921.5053366174055" y="126.0" />
+      <point x="-68.25" y="48.0" />
     </edge>
     <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.entity.Entity">
-      <point x="-71.25" y="-105.5" />
-      <point x="347.5" y="221.0" />
-      <point x="293.0" y="221.0" />
-      <point x="63.5" y="36.5" />
+      <point x="167.08333333333326" y="-164.5" />
+      <point x="753.3440065681444" y="315.0" />
+      <point x="866.2606732348111" y="315.0" />
+      <point x="-52.25" y="25.0" />
+    </edge>
+    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.AbstractEntity">
+      <point x="0.0" y="-360.0" />
+      <point x="695.25" y="704.0" />
+      <point x="686.5106732348112" y="704.0" />
+      <point x="100.25" y="164.5" />
+    </edge>
+    <edge source="com.jdy.entity.BaseEntity" target="com.jdy.entity.BaseEntity.ChangeData">
+      <point x="0.0" y="360.0" />
+      <point x="0.0" y="-84.0" />
+    </edge>
+    <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.entity.Monitorable">
+      <point x="-100.25" y="-164.5" />
+      <point x="486.0106732348112" y="305.0" />
+      <point x="418.5" y="305.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="com.jdy.net.Response" target="com.jdy.entity.Entity">
+      <point x="0.0" y="-141.0" />
+      <point x="1236.510673234811" y="305.0" />
+      <point x="970.7606732348111" y="305.0" />
+      <point x="52.25" y="25.0" />
+    </edge>
+    <edge source="com.jdy.net.FailureResponse" target="com.jdy.net.AbstractResponse">
+      <point x="86.66666666666663" y="-36.5" />
+      <point x="1434.4166666666665" y="1469.0" />
+      <point x="1525.3803366174056" y="1469.0" />
+      <point x="99.75" y="152.5" />
+    </edge>
+    <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Setter">
+      <point x="52.25" y="-25.0" />
+      <point x="970.7606732348111" y="126.0" />
+      <point x="967.0053366174055" y="126.0" />
+      <point x="-22.75" y="48.0" />
+    </edge>
+    <edge source="com.jdy.entity.Entity" target="com.jdy.entity.Getter">
+      <point x="-52.25" y="-25.0" />
+      <point x="866.2606732348111" y="116.0" />
+      <point x="831.779146141215" y="116.0" />
+      <point x="30.5" y="36.5" />
+    </edge>
+    <edge source="com.jdy.net.AbstractResponse" target="com.jdy.entity.Setter">
+      <point x="166.25" y="-152.5" />
+      <point x="1591.8803366174056" y="704.0" />
+      <point x="1627.1303366174056" y="704.0" />
+      <point x="1627.1303366174056" y="126.0" />
+      <point x="1058.0053366174056" y="126.0" />
+      <point x="68.25" y="48.0" />
+    </edge>
+    <edge source="com.jdy.entity.Monitorable" target="com.jdy.entity.OnDataChangeListener">
+      <point x="0.0" y="-36.5" />
+      <point x="418.5" y="126.0" />
+      <point x="440.0470032840723" y="126.0" />
+      <point x="24.0" y="25.0" />
+    </edge>
+    <edge source="com.jdy.entity.AbstractEntity" target="com.jdy.entity.OnDataChangeListener">
+      <point x="-33.41666666666674" y="-164.5" />
+      <point x="552.8440065681444" y="315.0" />
+      <point x="589.5" y="315.0" />
+      <point x="589.5" y="126.0" />
+      <point x="488.0470032840723" y="126.0" />
+      <point x="72.0" y="25.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9077046548956661" x="1005.0" y="541.8638373121132" />
-  <SelectedNodes>
-    <node>com.jdy.net.FailureResponse</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="814.0" y="831.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

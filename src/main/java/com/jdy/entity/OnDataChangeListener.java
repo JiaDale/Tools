@@ -1,4 +1,4 @@
-package com.jdy.design.observe;
+package com.jdy.entity;
 
 /**
  * 观察者模式， 被观察的接口
@@ -11,13 +11,15 @@ package com.jdy.design.observe;
  * @param <K> 观察者需要跟新的数据中的 Key
  * @param <V> 观察者需要跟新的数据中的 Value
  */
-public interface Observer<K, V> {
+public interface OnDataChangeListener<K, V> {
 
     /**
+     * 此形式与Map相似，此方法也需要借助Map的性质来实现
      *
-     * @param key
-     * @param value
+     * @param key   数据的Key值
+     * @param value 数据的Value值
      */
-    void update(K key, V value);
+    void onDataChange(K key, V value);
+
 
 }

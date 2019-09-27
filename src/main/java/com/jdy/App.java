@@ -1,6 +1,10 @@
 package com.jdy;
 
-import java.util.regex.Pattern;
+import com.jdy.account.AccountEntity;
+import com.jdy.entity.BaseEntity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 常用工具包
@@ -12,18 +16,43 @@ import java.util.regex.Pattern;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        String[] FILE_TYPE = {".html", ".xhtml"};
+        Map<String, Object> map = new HashMap<>();
 
-        String html = "/web/query.json";
+        BaseEntity entity = new BaseEntity();
 
-        String regex = "/web/add.*.json";
-
-        Pattern compile = Pattern.compile(regex);
+        AccountEntity accountEntity = new AccountEntity();
 
 
+        System.out.println(accountEntity.getClass().isAssignableFrom(entity.getClass()));
+
+//
+//
+//
+//        Method[] methods = accountEntity.getClass().getMethods();
+//
+//
+//        for (Method method : methods) {
+//            System.out.println(method.getName());
+//        }
 
 
-        System.out.println(compile.matcher(html).matches());
+
+//
+
+
+
+//        String[] FILE_TYPE = {".html", ".xhtml"};
+//
+//        String html = "/web/query.json";
+//
+//        String regex = "/web/add.*.json";
+//
+//        Pattern compile = Pattern.compile(regex);
+
+
+
+
+//        System.out.println(accountEntity);
 
 
     }

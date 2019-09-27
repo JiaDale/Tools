@@ -15,6 +15,10 @@ public class DateFunction implements Function<Object, Date> {
     private DateFunction() {
     }
 
+    public static Date convert(Object value) {
+        return FunctionHolder.singleton.apply(value);
+    }
+
     @Override
     public Date apply(Object value) {
         if (Objects.isNull(value)) {

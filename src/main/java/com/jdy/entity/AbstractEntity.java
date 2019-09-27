@@ -1,7 +1,5 @@
 package com.jdy.entity;
 
-import com.jdy.design.observe.Observable;
-import com.jdy.design.observe.Observer;
 import com.jdy.util.CollectionUtils;
 import com.jdy.util.TextUtils;
 
@@ -14,7 +12,7 @@ import java.util.stream.Collectors;
  * Description: Tools
  * Created by Administrator on 2019/9/20 2:16
  */
-abstract class AbstractEntity implements Entity, Observable<String, Object> {
+abstract class AbstractEntity<T> implements Entity<T>, Monitorable<String, Object> {
 
     private static final long serialVersionUID = -2061950544706597370L;
 
@@ -22,11 +20,13 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
      * 数据存储对象
      */
     private Map<String, Object> dataMap;
-    private final Map<String, String> keyMap = new TreeMap<>();
-    private Collection<Observer<String, Object>> observers;
+
+    protected final Map<String, String> keyMap = new TreeMap<>();
+
+    private Collection<OnDataChangeListener<String, Object>> listeners;
 
     /**
-     * 无参构造函数，实例化数据存储对象
+     * 无参构造函数，实例化数据存储对象，允许子类不写构造方法
      */
     AbstractEntity() {
         this(new ConcurrentHashMap<>());
@@ -107,23 +107,23 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
     }
 
     @Override
-    public void update(String key, Object value) {
-        if (CollectionUtils.isEmpty(observers)) {
+    public void monitor(String key, Object value) {
+        if (CollectionUtils.isEmpty(listeners)) {
             return;
         }
 
-        Iterator<Observer<String, Object>> iterator = observers.iterator();
-        while (iterator.hasNext()) {
-            iterator.next().update(key, value);
+        for (OnDataChangeListener<String, Object> listener : listeners) {
+            listener.onDataChange(key, value);
         }
     }
 
+
     @Override
-    public void subscribe(Observer<String, Object> observer) {
-        if (CollectionUtils.isEmpty(observers)) {
-            observers = CollectionUtils.newHashSet(observer);
+    public void addListener(OnDataChangeListener<String, Object> observer) {
+        if (CollectionUtils.isEmpty(listeners)) {
+            listeners = CollectionUtils.newHashSet(observer);
         } else {
-            observers.add(observer);
+            listeners.add(observer);
         }
     }
 
@@ -132,24 +132,24 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
         return dataMap.hashCode();
     }
 
+
     /**
      * 取数据
      * <p>
      * 备注：此方法存在数据转换问题， 因此调用时尽量让其返回Object对象
      *
      * @param key 字段名称
-     * @param <V> 字段值的数据类型
      * @return 字段值
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public <V> V get(final String key) {
+    public Object get(String key) {
         String tempKey = keyMap.get(key.toUpperCase());
         if (TextUtils.isBlack(tempKey)) {
-            return (V) dataMap.get(key);
+            return dataMap.get(key);
         }
-        return (V) dataMap.get(tempKey);
+        return dataMap.get(tempKey);
     }
+
 
     /**
      * 获取数据， 结合数据库字段名称, 可以忽略大小写的性质，因此这里做个兼容
@@ -175,7 +175,6 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
         if (TextUtils.isBlack(key)) {
             throw new IllegalArgumentException("Key值不能为空！");
         }
-
         String tempKey;
         if (ignoreCase) { //不需要考虑大小写问题，需要从keyMap获取第一次存储的key
             String upperKey = key.toUpperCase();
@@ -189,7 +188,7 @@ abstract class AbstractEntity implements Entity, Observable<String, Object> {
         } else {
             dataMap.put(tempKey = key, value);
         }
-        update(tempKey, value);
+        monitor(tempKey, value);
         return this;
     }
 

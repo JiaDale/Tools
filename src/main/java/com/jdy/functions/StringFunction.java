@@ -24,6 +24,11 @@ public class StringFunction implements Function<Object, String> {
     }
 
 
+    public static String convert(Object value){
+        return FunctionHolder.singleton.apply(value);
+    }
+
+
     @Override
     public String apply(Object value) {
         if (Objects.isNull(value)){
@@ -44,5 +49,4 @@ public class StringFunction implements Function<Object, String> {
 
         return value.toString();
     }
-
 }

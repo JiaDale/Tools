@@ -19,6 +19,11 @@ public class BooleanFunction implements Function<Object, Boolean> {
     private BooleanFunction() {
     }
 
+    public static Boolean convert(Object value){
+        return FunctionHolder.singleton.apply(value);
+    }
+
+
     @Override
     public Boolean apply(Object value) {
         if (Objects.isNull(value)) {

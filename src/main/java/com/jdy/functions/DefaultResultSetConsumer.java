@@ -1,7 +1,5 @@
 package com.jdy.functions;
 
-import com.jdy.entity.Entity;
-
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.*;
@@ -54,7 +52,7 @@ class DefaultResultSetConsumer<T> implements ResultSetConsumer<T> {
                     }
                     map.put(metaData.getColumnName(index), object);
                 }
-                return Entity.create(map) ;
+//                return Entity.create(map) ;
             }
             //单个数据类型，直接强制返回
             return (T) resultSet.getObject(1);

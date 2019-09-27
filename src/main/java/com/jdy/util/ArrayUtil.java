@@ -236,4 +236,13 @@ public class ArrayUtil {
 
         return array;
     }
+
+    public static <T> boolean matcher(Class<?>[] parameterTypes, T[] parameters) {
+        for (int i = 0; i < parameterTypes.length; i++) {
+            if (!parameterTypes[i].isAssignableFrom(parameters[i].getClass())) return false;
+        }
+
+
+        return true;
+    }
 }

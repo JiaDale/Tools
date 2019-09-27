@@ -1,4 +1,4 @@
-package com.jdy.design.observe;
+package com.jdy.entity;
 
 /**
  * 观察者模式， 被观察的接口
@@ -10,7 +10,7 @@ package com.jdy.design.observe;
  * @param <K> 观察者需要跟新的数据中的 Key
  * @param <V> 观察者需要跟新的数据中的 Value
  */
-public interface Observable<K, V> {
+public interface Monitorable<K, V> {
 
     /**
      * 但数据发生修改变化时，会调用此方法，来通知观察者修改了那些数据
@@ -18,7 +18,7 @@ public interface Observable<K, V> {
      * @param key   观察者收到修改数据的key值
      * @param value 观察者收到数据的value值
      */
-    void update(K key, V value);
+    void monitor(K key, V value);
 
     /**
      * 被观察者订阅观察者，调用此方法
@@ -27,5 +27,7 @@ public interface Observable<K, V> {
      *
      * @param observer 观察者接口
      */
-    void subscribe(Observer<K, V> observer);
+    default void addListener(OnDataChangeListener<K, V> observer){
+        //此方法可选择是否实现
+    }
 }

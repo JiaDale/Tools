@@ -1,10 +1,10 @@
 package com.jdy.net;
 
 import com.google.gson.Gson;
+import com.jdy.entity.Entity;
 import com.jdy.entity.Setter;
 import com.jdy.functions.BooleanFunction;
 import com.jdy.functions.StringFunction;
-import com.jdy.util.CheckUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +63,11 @@ class AbstractResponse implements Response {
         return dataMap;
     }
 
+    @Override
+    public Entity setDataMap(Map<String, Object> map) {
+        return null;
+    }
+
 
     @Override
     public String toString() {
@@ -70,15 +75,25 @@ class AbstractResponse implements Response {
         return new Gson().toJson(getDataMap());
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <V> V get(String key) {
-        return (V) CheckUtil.checkValue(dataMap.get(key), null);
-    }
+
+
+//    public <V> V get(String key) {
+//        return (V) CheckUtil.checkValue(dataMap.get(key), null);
+//    }
 
     @Override
     public <V> Setter set(String key, V value, boolean ignoreCase) {
         dataMap.put(key, value);
         return this;
+    }
+
+    @Override
+    public <R> R build() {
+        return null;
+    }
+
+    @Override
+    public Object get(String key) {
+        return null;
     }
 }

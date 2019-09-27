@@ -2,11 +2,9 @@ package com.jdy.entity;
 
 import com.jdy.annotation.Column;
 import com.jdy.annotation.PrimaryKey;
-import com.jdy.design.observe.Observer;
-import com.jdy.functions.BooleanFunction;
-import com.jdy.functions.DateFunction;
 import com.jdy.functions.StringFunction;
 import com.jdy.util.CollectionUtils;
+import com.jdy.util.TextUtils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,11 +12,17 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class BaseEntity extends AbstractEntity implements BasicGetter<String>, Variable {
+public class BaseEntity extends AbstractEntity<BaseEntity> implements BasicGetter<String>, Variable, OnDataChangeListener<String, Object> {
 
     private static final long serialVersionUID = 720782987071826141L;
 
-    private final OrganData organData;
+    private final Map<String, Object> organData;
+
+    private final Map<String, String> OrganKeyMap = new TreeMap<>();
+
+    private  Map<String, ChangeData> changeDataMap = new HashMap<>();
+
+    private boolean hasChanged = false;
 
     public BaseEntity() {
         this(new ConcurrentHashMap<>());
@@ -26,13 +30,12 @@ public class BaseEntity extends AbstractEntity implements BasicGetter<String>, V
 
     public BaseEntity(Map<String, Object> map) {
         super(map);
-        organData = new OrganData(map);
-        subscribe(organData);
+        organData = map;
+        addListener(this);
     }
 
     private static final String PRIMARY_KEY = "RowGuid";
     private static final String ROW_INDEX = "RowIndex";
-
 
     @Column("RowGuid")
     @PrimaryKey
@@ -56,7 +59,7 @@ public class BaseEntity extends AbstractEntity implements BasicGetter<String>, V
 
     @Override
     public String getStr(String key) {
-        return StringFunction.getInstance().apply(get(key));
+        return get(key, "");
     }
 
     @Override
@@ -81,7 +84,7 @@ public class BaseEntity extends AbstractEntity implements BasicGetter<String>, V
 
     @Override
     public Boolean getBoolean(String key) {
-        return BooleanFunction.getInstance().apply(get(key));
+        return get(key, false);
     }
 
     @Override
@@ -116,82 +119,110 @@ public class BaseEntity extends AbstractEntity implements BasicGetter<String>, V
 
     @Override
     public Date getDate(String key) {
-        return DateFunction.getInstance().apply(get(key));
+        return get(key, new Date());
     }
 
-    void set(Map<String, Object> map) {
-        if (CollectionUtils.isEmpty(map)) return;
+
+    @Override
+    public Entity setDataMap(Map<String, Object> map) {
+        if (CollectionUtils.isEmpty(map)) return this;
+
         Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, Object> next = iterator.next();
             set(next.getKey(), next.getValue());
         }
+        return this;
     }
 
-    public void set(Entity entity) {
-        set(entity.getDataMap());
+    public Entity setDataMap(Entity entity) {
+        if (Objects.isNull(entity)) return this;
+
+        return setDataMap(entity.getDataMap());
     }
 
-    public String[] getColumnNames() {
-        Map<String, Object> dataMap = getDataMap();
-        if (null == dataMap)
-            return null;
-        Set<String> keySet = dataMap.keySet();
-        return keySet.toArray(new String[0]);
-    }
-
-    public Object[] getColumnValues() {
-        Map<String, Object> dataMap = getDataMap();
-        if (null == dataMap)
-            return null;
-        return dataMap.values().toArray();
-    }
+//    public String[] getColumnNames() {
+//        Map<String, Object> dataMap = getDataMap();
+//        if (null == dataMap)
+//            return null;
+//        Set<String> keySet = dataMap.keySet();
+//        return keySet.toArray(new String[0]);
+//    }
+//
+//    public Object[] getColumnValues() {
+//        Map<String, Object> dataMap = getDataMap();
+//        if (null == dataMap)
+//            return null;
+//        return dataMap.values().toArray();
+//    }
 
     @Override
     public boolean hasChanged() {
-        return organData.changeDate.hasChanged();
+        return hasChanged;
     }
 
     @Override
-    public ChangeDate getChangeData() {
-        return organData.changeDate;
+    public Map<String, Object> getChangeData() {
+        return organData;
     }
 
-    private class OrganData implements Serializable, Observer<String, Object> {
-        private static final long serialVersionUID = 7893149586292102940L;
 
-        private Map<String, Object> organMap;
-        private ChangeDate changeDate;
+    @Override
+    public BaseEntity build() {
+        return this;
+    }
 
-        OrganData(Map<String, Object> organMap) {
-            this.organMap = new ConcurrentHashMap<>(organMap);
+    @Override
+    public void onDataChange(String key, Object value) {
+        String tempKey = TextUtils.checkValue(OrganKeyMap.get(key.toUpperCase()), key);
+        Object organValue = organData.get(tempKey);
+        if (Objects.isNull(organValue)) {
+            if (Objects.isNull(value)) return;
+
+            collect(key, null, value);
+            return;
         }
+
+        if (organValue.equals(value)) return;
+
+        collect(key, organValue, value);
+    }
+
+
+    private void collect(String tempKey, Object organValue, Object value) {
+        changeDataMap.put(tempKey, new ChangeData(tempKey, null, value));
+        OrganKeyMap.put(tempKey.toUpperCase(), tempKey);
+        hasChanged = true;
+    }
+
+    public class ChangeData implements Serializable {
+
+        private static final long serialVersionUID = -6406814491006475389L;
+        private final String key;
+        private final Object organValue, value;
+
+        public ChangeData(String key, Object organValue, Object value) {
+            this.key = key;
+            this.organValue = organValue;
+            this.value = value;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public Object getOrganValue() {
+            return organValue;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
 
         @Override
         public String toString() {
-            return organMap.toString();
-        }
-
-        @Override
-        public void update(String key, Object value) {
-            Object organValue = organMap.get(key);
-            if (Objects.isNull(organValue)) {
-                if (Objects.isNull(value))
-                    return;
-                collect(key, null, value);
-                return;
-            }
-            if (organValue.equals(value))
-                return;
-            collect(key, organValue, value);
-        }
-
-        private void collect(String key, Object organValue, Object value) {
-            if (Objects.isNull(changeDate)) {
-                changeDate = new ChangeDate(key, organValue, value);
-            } else {
-                changeDate.add(key, organValue, value);
-            }
+            return "[key : " + key + ", value: " + StringFunction.getInstance().apply(organValue) + "  --> " + StringFunction.getInstance().apply(value) + "]";
         }
     }
 }

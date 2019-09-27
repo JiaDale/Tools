@@ -1,5 +1,6 @@
 package com.jdy.util;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -94,5 +95,24 @@ public class ClassUtil {
      */
     public static ClassLoader getContextClassLoader() {
         return Thread.currentThread().getContextClassLoader();
+    }
+
+    public static Constructor<?> getConstructor(Constructor<?>[] constructors, Object... parameters) {
+        for (Constructor<?> constructor : constructors) {
+            if (constructor.getParameterCount() != parameters.length) continue;
+
+            if (ArrayUtil.matcher(constructor.getParameterTypes(), parameters)) {
+                return constructor;
+            }
+        }
+        return null;
+    }
+
+    public static boolean isSuperClass(Class<?> subclass, Class<?> parentClass) {
+        if (subclass == null) return false;
+
+        if (subclass == parentClass) return true;
+
+        return isSuperClass(subclass.getSuperclass(), parentClass);
     }
 }
